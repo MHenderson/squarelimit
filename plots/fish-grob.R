@@ -4,6 +4,11 @@ library(svgparser)
 
 fish <- read_svg(here("fish.svg"))
 
+# > fish$children[[1]]$children[[1]]$name
+# [1] "GRID.pathgrob.1"
+# > grid::getGrob(fish, "GRID.pathgrob.1")
+# pathgrob[GRID.pathgrob.1] 
+
 #fish_above_fish_1 <- above(fish, fish)
 
 # rotation works for gTree
@@ -17,15 +22,13 @@ rot <- function(g, angle = 90) {
   )
 }
 
-# this is not what we're after
-# found here: https://stat.ethz.ch/pipermail/r-help//2012-May/313608.html
 flip <- function(g) {
-  grid::editGrob(g, vp = grid::viewport(angle = 180, y = grid::unit(0.5, "npc") - grid::unit(1, "line")))
+  grid::editGrob(g, x = grid::unit(1, "npc") - g$x)
 }
 
 png(here("plots", "fish-grob.png"))
-grid::grid.draw(fish)
-# we have to give the fish a viewport to start with
-fish <- grid::editGrob(fish, vp = grid::viewport())
-grid::grid.draw(flip(fish))
+# grid::grid.draw(fish)
+g1 <- grid::getGrob(fish, "GRID.pathgrob.1")
+grid::grid.draw(g1)
+grid::grid.draw(flip(g1))
 dev.off()
