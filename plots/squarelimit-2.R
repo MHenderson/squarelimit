@@ -3,7 +3,10 @@ library(grid)
 library(here)
 library(svgparser)
 
-fish <- read_svg(here("fish.svg"))
+# hacking with these offsets is probably not the right approach
+#fish <- read_svg(here("fish.svg"), xoffset = -0.074, yoffset = 0.01,)
+fish <- read_svg(here("fish.svg"), xoffset = 0, yoffset = 0, default.units = "mm")
+# are there pieces missing?
 fish <- getGrob(fish, "GRID.pathgrob.1")
 
 fliprot45 <- function(x) {
@@ -32,5 +35,6 @@ t <- over(fish, above(fish2, fish3))
 #corner2 <- quartet(corner1, side1, rot(side1), u)
 
 png(here("plots", "squarelimit-2.png"))
+grid.rect(x = unit(85, "mm"), y = unit(85, "mm"), width = unit(170, "mm"), height = unit(170, "mm"))
 grid.draw(over(fish, rot(rot(fish))))
 dev.off()
