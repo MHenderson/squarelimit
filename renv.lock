@@ -11,18 +11,13 @@
   "Packages": {
     "funcgeo": {
       "Package": "funcgeo",
-      "Version": "0.2.1.9000",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "MHenderson",
-      "RemoteRepo": "funcgeo",
-      "RemoteRef": "main",
-      "RemoteSha": "1e120b9f8c2c1806abef6988762fb6866e1976c3",
+      "Version": "0.3.0",
+      "Source": "Repository",
+      "Repository": "https://mhenderson.r-universe.dev",
       "Requirements": [
         "grid"
       ],
-      "Hash": "4a86487bcc576d958d96e0440088a001"
+      "Hash": "d166f54dbb578c3a5e841ca8dc1a55c4"
     },
     "here": {
       "Package": "here",
